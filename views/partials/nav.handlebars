@@ -1,0 +1,12 @@
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/products">Products Page</a></li>
+        {{#if user}}
+            <li><a href="/login/logout" class="buttonDelete">Logout </a></li> 
+        {{else}}
+        <li><a href="/customer-reg">Customer Registration</a></li>
+        <li><a href="/login">Login</a></li>  
+        {{/if}}                 
+    </ul>
+</nav>
