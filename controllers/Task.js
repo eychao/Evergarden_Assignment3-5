@@ -52,7 +52,7 @@ router.get("/list",(req,res)=>{         //Route to get all product list
     .catch(err=>console.log(`Error happened when pulling from the database: ${err}`));
 });
 router.get("/search",(req,res)=>{
-    productModel.find({category:req.body.catSearch}, products)    //pull only status: "open" documents -->productModel.find({status:"Open"})
+    productModel.find()    //{category: req.body.catSearch} pull only status: "open" documents -->productModel.find({status:"Open"})
     .then((products)=>{
         const selectedProducts = products.map(product=>{
             const dateCreated = moment(product.dateCreated).format('MMMM Do YYYY, h:mm:ss a'); //format date and time with moment.js
@@ -68,7 +68,8 @@ router.get("/search",(req,res)=>{
                 dateCreated: dateCreated
             }
         });
-        res.render("task/productDashboard",{    //Filter out info wanted returned into new array
+        res.redirect("/task/list",{
+        //res.render("task/productDashboard",{    //Filter out info wanted returned into new array
             productData: selectedProducts       //display each product data in productDashboard
         });
     })
@@ -109,7 +110,7 @@ router.put("/update/:id",(req,res)=>{
 });
 
 router.delete("/delete/:id",(req,res)=>{    
-    taskModel.deleteOne({_id:req.params.id})
+    productModel.deleteOne({_id:req.params.id})
     .then(()=>{
         res.redirect("/task/list");
     })
