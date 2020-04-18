@@ -8,7 +8,7 @@ const productModel = require("../model/product");
 router.get("/",(req,res)=>{ 
     //pull from database, get products 
     //inject products into bestseller on homepage
-    productModel.find({bestseller: true})    //filter bestsellers
+    productModel.find({bestseller: "true"})    //filter bestsellers {category:req.body.catSearch}, products
     .then((products)=>{
         const selectedProducts = products.map(product=>{            
             return{             // inject to bestseller on homepage
@@ -21,7 +21,7 @@ router.get("/",(req,res)=>{
             title:"Home",
             headingInfo: "Home Page",
             productsCat :productCat.getProductsCat(),
-            productsCat: selectedProducts       //display each product data in homepage
+            productsBS: selectedProducts       //display each product data in homepage
         });
     })
     .catch(err=>console.log(`Error happened when pulling from the database: ${err}`));  
