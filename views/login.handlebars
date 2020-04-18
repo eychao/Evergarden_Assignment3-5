@@ -1,0 +1,13 @@
+<div>{{acceptedInput}}</div>
+
+<form method="POST" action ="/login/user">
+    <label for="Email">Email</label>
+    <p class="errors">{{emailError}}</p>  
+    <input type="text" id="Email" name="Email" value="{{Email}}"><br>  
+
+    <label for="Pass">Password</label>
+    <p class="errors">{{passError}}</p>    
+    <input type="text" id="Pass" name="Pass" value="{{Password}}"><br><br>
+
+    <input type="submit" value="Login">
+</form>

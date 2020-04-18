@@ -1,0 +1,23 @@
+<p>Category</p>
+<section>
+    {{#each productsCat}}
+        <div class="grid-product1">
+            <p>
+                {{this.category}}
+            </p>
+            <img src="{{this.img}}" alt="Image Not Available"/>
+        </div>    
+    {{/each}}
+</section>
+
+<p>Best Sellers</p>
+<section>
+    {{#each productsBS}}
+        <div class="grid-product1">
+            <img src="{{this.img}}" alt="Image Not Available"/>      
+            <p>
+                Price: {{this.price}}
+            </p>
+       </div>
+    {{/each}}
+</section>

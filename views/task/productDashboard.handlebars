@@ -1,0 +1,71 @@
+<h2>Product Dashboard</h2>
+  
+ <section>   
+
+     <form method="POST" action="/task/search">
+        <label>Search By</label>
+        <select name="catSearch">
+            <option value="All">All Products</option>
+            <option value="Aglaonema">Aglaonema</option>
+            <option value="Bonsai">Bonsai</option>
+            <option value="Flowering">Flowering</option>
+            <option value="Succelents">Succelents</option>
+        </select>
+        <input type="submit" value="Search">
+     </form> <br><br>
+
+    <table class="dashTable">
+        <thead>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Qty</th>
+            <th>Date Created</th>
+            <th>Operation</th>
+        </thead>
+        <tbody>
+            {{#each productData}}
+                <tr>
+                    <td class="imgtr">
+                        <img src="/img/{{this.img}}" class= "imgDash" alt="Image Not Available"/>
+                   </td>
+                   <td>
+                        <span>{{this.name}}</span>
+                   </td>
+                   <td>
+                       <span>$ {{this.price}}</span>                      
+                   </td>
+                   <td  class="desDash">
+                        <span>{{this.description}}</span>
+                   </td>
+                   <td>
+                       <span>{{this.category}}</span>
+                   </td>
+                   <td>
+                       <span>{{this.quantity}}</span>
+                   </td>
+                   <td>
+                       <span>{{this.dateCreated}}</span>
+                   </td>
+                   <td>
+                        <p><a href="/task/edit/{{this.id}}" class="modifyDelete-button">Edit</a></p>
+                        <br>
+                        <p><a href="/task/delete/{{this.id}}?method=DELETE" class="modifyDelete-button">Delete</a></p>
+                   </td> 
+                </tr>
+
+                {{else}}
+                    <td colspan="5">
+                        <p>No tasks in the database</p>
+                    </td>
+            {{/each}}
+        </tbody>
+    </table>
+ 
+</section>
+
+<div id="tasks-links-holder">
+    <a href="/task/add">Add a Task</a>
+</div>

@@ -1,0 +1,38 @@
+<h2>Add Product</h2>
+    
+    <form method="POST" action="/task/add"> <!--enctype="multipart/form-data" to store image as bytes-->
+
+        <label>Product Name</label>
+        <input type="text" name="name" id="name"> <br><br>
+
+        <label>Price</label>
+        <input type="number" name="price" id="price" step=0.01> <br><br>
+
+        <label>Description</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label>Category</label>
+        <select name="category">
+            <option value="Aglaonema">Aglaonema</option>            
+            <option value="Bonsai">Bonsai</option>
+            <option value="Flowering">Flowering</option>
+            <option value="Succelents">Succelents</option>
+        </select>
+        <br><br>
+        
+        <label>Quantity</label>
+        <input type="number" name="quantity" id="quantity"> <br><br>
+
+        <label>Bestseller</label>
+        <select name="bestseller">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br><br>
+
+        <label>Upload Picture</label>
+        <input type="file" name="img" id="img"> <br><br>
+
+        <input type="submit" value="Add Product">
+
+    </form>
