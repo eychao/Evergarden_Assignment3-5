@@ -23,7 +23,7 @@ router.post("/add",(req,res)=>{
     .then(()=>{
         res.redirect("/task/list");
     })
-    .catch(err=>console.log('Error happened when inserting in the database: ${err}'));
+    .catch(err=>console.log(`Error happened when inserting in the database: ${err}`));
 });
 
 router.get("/list",(req,res)=>{         //Route to get all product list

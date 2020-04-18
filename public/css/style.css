@@ -144,6 +144,7 @@ form{
     background-color: rgb(71, 71, 71);
     color:#fff;
     padding:10px 20px; 
+    border-radius: 10px;
 }
 .dashTable{
     border: 3px solid;
@@ -170,4 +171,35 @@ td{
     width: 30%;
     text-align: left;
     padding: 10px;
+}
+.buttonDash{
+    display:inline-block;
+    width: 160px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    border: 3px;
+    background-color: white;
+    color: green;
+    padding:10px 20px;
+    border: 5px solid green;
+    border-radius: 50px;
+}
+.buttonDash:hover{
+    color: white;
+    background-color: green;
+}
+.buttonDelete{
+    display:inline-block;
+    width: 80px;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(150, 150, 150);
+    color:white;
+    padding:10px 20px; 
+    border-radius: 10px;
+    position: absolute;
+    right: 50px;
+    top: 25px;
+    border: 3px solid white;
 }

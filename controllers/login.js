@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router();
+const userModel = require("../model/user"); 
+const bcrypt = require("bcryptjs");
 
 //Route for the Login Page
 router.get("/",(req,res)=>{
@@ -45,13 +47,53 @@ router.post("/user",(req,res)=>{
     
     //All user inputs valid
     else{
-        res.render("clerkDashboard");
+        //Check if user is in database
+        userModel.findOne({email:req.body.Email})
+        .then(user=>{
+            const error=[];
+            if(user==null){         //email not found
+                error.push("Sorry, you entered the wrong email and/or password");
+                res.render("login",{
+                    title:"Login",
+                    headingInfo: "Login",
+                    authError: error //if authError is same as error type ->error
+                });
+            }
+            else{
+                bcrypt.compare(req.body.Pass, user.password)
+                .then(isMatched=>{
+                    if(isMatched){  //create session
+                        req.session.userSession = user;
+                        res.render("clerkDashboard");
+                    }
+                    else{
+                        error.push("Sorry, you entered the wrong email and/or password");
+                        res.render("login",{
+                            title:"Login",
+                            headingInfo: "Login",
+                            authError: error //if authError is same as error type ->error
+                        });
+                    }
+                })
+                .catch(err=>console.log(`Error:${err}`));            
+            }
+        })
+        .catch(err=>console.log(`Error: ${err}`));
+        //res.render("clerkDashboard");
         /*res.render("login",{
             title:"Login",
             headingInfo: "Login",
             acceptedInput: 'Welcome Back!'
         });*/
     }
+});
+
+router.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.render("login",{
+        title:"Login",
+        headingInfo: "Login",
+    });
 });
 
 module.exports = router;

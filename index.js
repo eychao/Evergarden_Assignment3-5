@@ -3,6 +3,7 @@ const exphbs= require("express-handlebars");
 const bodyParser = require('body-parser'); //bodyParser
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload'); //to upload file image
+const session = require('express-session');
 
 require('dotenv').config({path:"./config/keys.env"}); //load environment variable file
 
@@ -31,6 +32,16 @@ app.engine("handlebars", exphbs({
         }
     }
 }))
+//insert app.use(fileUpload());
+app.use(session({
+    secret: `${process.env.SESSION_KEY}`,
+    resave: false,
+    saveUninitialized: true
+}))
+app.use((req,res,next)=>{
+    res.locals.user = req.session.userSession;
+    next();
+})
 
 //load controllers
 const generalController = require("./controllers/general");
