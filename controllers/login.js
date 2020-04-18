@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const userModel = require("../model/user"); 
 const bcrypt = require("bcryptjs");
+const isAuthenticated = require("../middleware/auth");
 
 //Route for the Login Page
 router.get("/",(req,res)=>{
@@ -12,7 +13,7 @@ router.get("/",(req,res)=>{
 });
 
 //Login Page Post Data
-router.post("/user",(req,res)=>{
+router.post("/",(req,res)=>{
     //error messages variables
     const errorMsgs = [];
     const errorEmail = [];
@@ -64,7 +65,7 @@ router.post("/user",(req,res)=>{
                 .then(isMatched=>{
                     if(isMatched){  //create session
                         req.session.userSession = user;
-                        res.render("clerkDashboard");
+                        res.redirect("login/profile");
                     }
                     else{
                         error.push("Sorry, you entered the wrong email and/or password");
@@ -79,15 +80,13 @@ router.post("/user",(req,res)=>{
             }
         })
         .catch(err=>console.log(`Error: ${err}`));
-        //res.render("clerkDashboard");
-        /*res.render("login",{
-            title:"Login",
-            headingInfo: "Login",
-            acceptedInput: 'Welcome Back!'
-        });*/
     }
 });
-
+//router.get("/profile",isAuthenticated,dashBoardLoader);
+router.get("/profile", isAuthenticated, (req,res)=>{
+    res.render("clerkDashboard");
+});
+//clerkDashboard
 router.get("/logout",(req,res)=>{
     req.session.destroy();
     res.render("login",{

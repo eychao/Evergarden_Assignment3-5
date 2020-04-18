@@ -1,7 +1,6 @@
 {
   "name": "Assignment3_5",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,5 +24,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eychao/Evergarden_Assignment3-5.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eychao/Evergarden_Assignment3-5/issues"
+  },
+  "homepage": "https://github.com/eychao/Evergarden_Assignment3-5#readme",
+  "description": ""
 }
