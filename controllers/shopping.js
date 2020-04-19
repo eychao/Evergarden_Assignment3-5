@@ -43,23 +43,6 @@ router.post("/add/:id", (req,res)=>{
 });
 
 
-router.get("/productAdd/:id", (req,res)=>{
-    productModel.findById(req.params.id)
-    .then((product)=>{
-        const {_id, img, name, price, description, category, quantity} = product;
-        res.render("shopping/productAdd",{
-           _id,
-            img,
-            name,
-            price,
-            description,
-            category,
-            quantity         
-        });
-    })
-    .catch(err=>console.log(`Error: ${err}`));
-});
-
 router.get("/list", (req,res)=>{         //Route to get all product list
     //pull from database, get products 
     //inject products into productDashboard
@@ -81,22 +64,6 @@ router.get("/list", (req,res)=>{         //Route to get all product list
         });
     })
     .catch(err=>console.log(`Error happened when pulling from the database: ${err}`));
-});
-
-router.put("/update/:id",userDashboard, (req,res)=>{
-    const product = {
-        img: req.body.img,
-        name: req.body.name,
-        price: req.body.price,
-        description: req.body.description,
-        category: req.body.category,
-        quantity: req.body.quantity
-    }
-    productModel.updateOne({_id:req.params.id}, product) //update one document _id = URL id
-    .then(()=>{
-        res.redirect("/task/list");
-    })
-    .catch(err=>console.log(`Error happened when updating product in the database: ${err}`));
 });
 
 router.delete("/delete/:id", (req,res)=>{    

@@ -14,6 +14,13 @@ router.get("/",(req,res)=>{
 
 //Registration Page Post Data
 router.post("/registration",(req,res)=>{
+    userModel.findOne({email: req.body.Email}) //dosen't work
+    .then(()=>{
+        res.render("customer-reg",{              
+                emailError: "email already taken!"
+        });
+    })
+    .catch(err=>console.log(`Error: ${err}`)); 
     //error messages variables
     const errorMsgs = [];
     const errorName = [];
@@ -25,7 +32,7 @@ router.post("/registration",(req,res)=>{
     const nameUser = req.body.Name;
     const emailUser = req.body.Email;
     const passUser = req.body.Pass;
-    const pass2User = req.body.Pass2;
+    const pass2User = req.body.Pass2;    
     
     //Validation Not Null
     if(nameUser == ""){
@@ -35,7 +42,8 @@ router.post("/registration",(req,res)=>{
     if(emailUser == ""){
         errorEmail.push("* You must enter your email");
         errorMsgs.push("* You must enter your email");
-    }    
+    }
+    
     if (passUser == ""){
         errorPass.push("* You must enter your password");
         errorMsgs.push("* You must enter your password");        
@@ -61,7 +69,7 @@ router.post("/registration",(req,res)=>{
         errorPass2.push("* Password does not match. Try again.");
         errorMsgs.push("* Password does not match. Try again.");
     }
-    
+     
     //If user did not enter all information
     if(errorMsgs.length >0){
         
