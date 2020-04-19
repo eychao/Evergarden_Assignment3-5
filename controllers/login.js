@@ -66,7 +66,7 @@ router.post("/",(req,res)=>{
                 .then(isMatched=>{
                     if(isMatched){  //create session
                         req.session.userSession = user;
-                        userDashboard(req,res);
+                        userDashboard(req,res);                 //userDashboard--> delete current + uncomment next line
                         //res.redirect("login/profile");
                     }
                     else{
@@ -85,8 +85,8 @@ router.post("/",(req,res)=>{
     }
 });
 //router.get("/profile",isAuthenticated,dashBoardLoader);
-router.get("/profile", isAuthenticated, (req,res)=>{
-    res.render("userDashboard");
+router.get("/profile", isAuthenticated, (req,res)=>{    //router.get("/profile", isAuthenticated, userDashboard);
+    res.render("userDashboard");                                                               //  \_>authorization
 });
 router.get("/adminProfile", isAuthenticated, (req,res)=>{
     res.render("adminDashboard");

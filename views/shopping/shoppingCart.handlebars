@@ -1,0 +1,45 @@
+<h2>Shopping Cart Dashboard</h2>
+<br>
+ <section>   
+    <table class="dashTable">
+        <thead>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Price</th>            
+            <th>Qty</th>          
+            <th>Operation</th>
+        </thead>
+        <tbody>
+            {{#each productData}}
+                <tr>
+                    <td class="imgtr">
+                        <img src="/img/{{this.img}}" class= "imgDash" alt="Image Not Available"/>
+                   </td>
+                   <td>
+                        <span>{{this.name}}</span>
+                   </td>
+                   <td>
+                       <span>$ {{this.price}}</span>                      
+                   </td>
+                    <td>
+                       <span>{{this.quantity}}</span>
+                   </td>
+                   <td>
+                        <p><a href="/task/edit/{{this.id}}" class="modifyDelete-button">Edit</a></p>
+                        <br>
+                        <p><a href="/task/delete/{{this.id}}?method=DELETE" class="modifyDelete-button">Delete</a></p>
+                   </td> 
+                </tr>
+                {{else}}
+                    <td colspan="5">
+                        <p>No tasks in the database</p>
+                    </td>
+            {{/each}}
+        </tbody>
+    </table>
+ 
+</section>
+
+<div id="tasks-links-holder">
+    <a href="/products">Add Product</a>
+</div>

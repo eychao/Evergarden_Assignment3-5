@@ -2,12 +2,14 @@ const express = require('express')
 const router = express.Router();
 const productModel = require("../model/product"); 
 const moment = require('moment');
+const isAdmin = require("../middleware/isAdmin");
+const userDashboard = require("../middleware/authorization");
 
-router.get("/add",(req,res)=>{          //Route to Add Product Form
+router.get("/add",userDashboard, isAdmin, (req,res)=>{          //Route to Add Product Form
     res.render("task/productAdd")
 });
 
-router.post("/add",(req,res)=>{
+router.post("/add",userDashboard, isAdmin, (req,res)=>{
     //insert into MongoDB database
     const newProduct = {
         name: req.body.name,
@@ -26,7 +28,7 @@ router.post("/add",(req,res)=>{
     .catch(err=>console.log(`Error happened when inserting in the database: ${err}`));
 });
 
-router.get("/list",(req,res)=>{         //Route to get all product list
+router.get("/list",userDashboard, isAdmin, (req,res)=>{         //Route to get all product list
     //pull from database, get products 
     //inject products into productDashboard
     productModel.find()    //pull only status: "open" documents -->productModel.find({status:"Open"})
@@ -51,7 +53,7 @@ router.get("/list",(req,res)=>{         //Route to get all product list
     })
     .catch(err=>console.log(`Error happened when pulling from the database: ${err}`));
 });
-router.get("/search",(req,res)=>{
+router.get("/search",userDashboard, isAdmin, (req,res)=>{
     productModel.find()    //{category: req.body.catSearch} pull only status: "open" documents -->productModel.find({status:"Open"})
     .then((products)=>{
         const selectedProducts = products.map(product=>{
@@ -76,7 +78,7 @@ router.get("/search",(req,res)=>{
     .catch(err=>console.log(`Error happened when pulling from the database using search: ${err}`));
 });
 
-router.get("/edit/:id",(req,res)=>{
+router.get("/edit/:id",userDashboard, isAdmin, (req,res)=>{
     productModel.findById(req.params.id)
     .then((product)=>{
         const {_id, img, name, price, description, category, quantity} = product;
@@ -93,7 +95,7 @@ router.get("/edit/:id",(req,res)=>{
     .catch(err=>console.log(`Error happened when editing product in the database: ${err}`));
 });
 
-router.put("/update/:id",(req,res)=>{
+router.put("/update/:id",userDashboard, isAdmin, (req,res)=>{
     const product = {
         img: req.body.img,
         name: req.body.name,
@@ -109,17 +111,12 @@ router.put("/update/:id",(req,res)=>{
     .catch(err=>console.log(`Error happened when updating product in the database: ${err}`));
 });
 
-router.delete("/delete/:id",(req,res)=>{    
+router.delete("/delete/:id",userDashboard, isAdmin, (req,res)=>{    
     productModel.deleteOne({_id:req.params.id})
     .then(()=>{
         res.redirect("/task/list");
     })
     .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));
 });
-
-router.get("/description",(req,res)=>{
-
-});
-
 
 module.exports = router;

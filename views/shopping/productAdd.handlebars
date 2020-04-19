@@ -1,0 +1,15 @@
+<form method="POST" action="/shopping/add/{{_id}}?method=PUT"> 
+    
+        <tr><img src="/img/{{this.img}}" alt="Image Not Available"/></tr>
+        <tr>
+            <td><br><b>Name : {{this.name}}</b><br></td>
+            <td><br><b>Price: $ {{this.price}}</b><br></td>
+            <td><br><b>Description: {{this.description}}</b><br></td>
+            <td><br><b>
+                <label>Quantity</label>
+                <input type="number" name="quantity" id="quantity" max="{{quantity}}" min ="1" value="1" step="1"> <br><br>
+            </b><br></td>
+
+            <td><br><b><input type="submit" value="Save to Shopping Cart"></b><br></td>
+        </tr>    
+</form>

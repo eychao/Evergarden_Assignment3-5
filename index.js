@@ -49,6 +49,7 @@ const productsController = require("./controllers/products");
 const registrationController = require("./controllers/customer-reg");
 const loginController = require("./controllers/login");
 const taskController = require("./controllers/task");
+const shoppingController = require("./controllers/shopping");
 
 app.use(fileUpload());
 
@@ -58,6 +59,7 @@ app.use("/products",productsController);
 app.use("/customer-reg",registrationController);
 app.use("/login",loginController);
 app.use("/task",taskController);
+app.use("/shopping",shoppingController);
 
 mongoose.connect(process.env.MONGODB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
