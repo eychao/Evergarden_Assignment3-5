@@ -1,7 +1,6 @@
 {
   "name": "Assignment3_5",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -40,5 +39,6 @@
   "bugs": {
     "url": "https://github.com/eychao/Evergarden_Assignment3-5/issues"
   },
-  "homepage": "https://github.com/eychao/Evergarden_Assignment3-5#readme"
+  "homepage": "https://github.com/eychao/Evergarden_Assignment3-5#readme",
+  "description": ""
 }
