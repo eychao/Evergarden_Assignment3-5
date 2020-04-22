@@ -3,10 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "anymatch": "^3.1.1",
+    "bcryptjs": "^2.4.3",
+    "clone-response": "^1.0.2",
+    "decompress-response": "^3.3.0",
+    "dotenv": "^8.2.0",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "express-session": "^1.17.1",
+    "mimic-response": "^1.0.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.10",
+    "nopt": "^1.0.10",
+    "normalize-path": "^3.0.0",
+    "normalize-url": "^4.5.0",
+    "p-cancelable": "^1.1.0",
+    "picomatch": "^2.2.2"
+  },
+  "devDependencies": {},
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,18 +36,5 @@
   "bugs": {
     "url": "https://github.com/eychao/Evergarden_Assignment3-5/issues"
   },
-  "homepage": "https://github.com/eychao/Evergarden_Assignment3-5#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-fileupload": "^1.1.7-alpha.3",
-    "express-handlebars": "^4.0.3",
-    "express-session": "^1.17.1",
-    "moment": "^2.24.0",
-    "mongoose": "^5.9.10"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.3"
-  }
+  "homepage": "https://github.com/eychao/Evergarden_Assignment3-5#readme"
 }
