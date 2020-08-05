@@ -13,7 +13,7 @@
     "clone-response": "^1.0.2",
     "decompress-response": "^3.3.0",
     "dotenv": "^8.2.0",
-    "express-fileupload": "^1.1.7-alpha.3",
+    "express-fileupload": "^1.1.9",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
     "express-session": "^1.17.1",
